@@ -1,4 +1,4 @@
-name: Alerta CI (ntfy)
+name: CI - Notificación Automática Alvely Bencosme 2024-1041
 
 on:
   push:
@@ -8,17 +8,19 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Enviar notificación personalizada a ntfy.sh
+      - name: Enviar alerta CI personalizada - Alvely Bencosme
         run: |
           curl -X POST https://ntfy.sh/devops-itla \
-            -H "Title: Nuevo Deploy Detectado" \
+            -H "Title: Integración Continua Ejecutada - Alvely Bencosme Ramos" \
             -H "Priority: 5" \
-            -H "Tags: github,ci,test,alert" \
+            -H "Tags: devops,itla,alvely,ci" \
             -H "Content-Type: application/json" \
             -d '{
+              "estudiante": "Alvely Bencosme Ramos",
+              "matricula": "2024-1041",
               "repositorio": "${{ github.repository }}",
-              "autor": "${{ github.actor }} | Alvely Bencosme 2024-1041",
+              "usuario_github": "${{ github.actor }}",
               "mensaje_commit": "${{ github.event.head_commit.message }}",
               "rama": "${{ github.ref_name }}",
-              "estado": "Pipeline ejecutado correctamente"
+              "resultado": "Workflow ejecutado exitosamente"
             }'
