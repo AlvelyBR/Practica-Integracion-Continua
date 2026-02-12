@@ -1,0 +1,29 @@
+name: CI - Alvely Bencosme Ramos 2024-1041
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notificacion:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Ejecutar programa Hola Mundo
+        run: node index.js
+
+      - name: Enviar notificación a ntfy
+        run: |
+          curl -H "Title: Nuevo push - Alvely Bencosme Ramos" \
+               -H "Priority: 5" \
+               -d "Se realizó un nuevo push al repositorio de Alvely Bencosme Ramos (2024-1041) en la rama main." \
+               https://ntfy.sh/devops-itla
